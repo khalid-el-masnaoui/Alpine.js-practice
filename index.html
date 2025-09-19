@@ -34,10 +34,30 @@
     <div
       x-data="{
         message:'first message (click me to change)',
-        change() {this.message = 'updated message'}
+        change() {
+            this.message = 'updated message'
+        }
     }"
     >
       <p x-text="message" @click="change()"></p>
     </div>
+
+    <!--re-usable data-->
+    <div x-data="dropdown">
+      <button
+        x-text="open == false ? 'open' : 'close'"
+        @click="toggle()"
+      ></button>
+      <div x-show="open">Content...</div>
+    </div>
+
+    <div x-data="dropdown">
+      <button
+        x-text="open == false ? 'open' : 'close'"
+        @click="toggle()"
+      ></button>
+      <div x-show="open">Content2...</div>
+    </div>
   </body>
+  <script src="app.js"></script>
 </html>
