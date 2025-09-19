@@ -9,5 +9,21 @@
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.0/dist/cdn.min.js"
     ></script>
   </head>
-  <body></body>
+  <body>
+    <!--Alpine.js components with x-data-->
+    <!--x-text & x-html-->
+    <div
+      x-data="{name:'malidkha', message:'hey there!', htmlMessage:'hey <strong>there</strong>'}"
+    >
+      <p x-text="name"></p>
+      <p x-text="message"></p>
+      <p x-html="htmlMessage"></p>
+    </div>
+
+    <div x-data>
+      <p
+        x-text="await(await fetch('https://jsonplaceholder.typicode.com/todos/1')).text()"
+      ></p>
+    </div>
+  </body>
 </html>
