@@ -157,6 +157,24 @@
         Content with transition
       </p>
     </div>
+
+    <!--x-if-->
+       <div
+      x-data="{
+        open: false,
+        toggle(){
+            this.open = !this.open
+        }
+    }"
+    >
+      <button
+        x-text="open == false ? 'Open' : 'Close'"
+        @click="toggle"
+      ></button>
+      <template x-if="open">
+        <p>Content with transition</p>
+      </template>
+      
   </body>
   <script src="app.js"></script>
 </html>
