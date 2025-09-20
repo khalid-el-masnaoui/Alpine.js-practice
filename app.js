@@ -10,10 +10,11 @@ document.addEventListener("alpine:init", () => {
         username: 'malidkha',
         posts: [
             {
+                id: 1,
                 title: 'title-1',
                 body : 'post-1 body'
             },
-            {
+            {   id: 2,
                 title: 'title-2',
                 body : 'post-2 body'
             }

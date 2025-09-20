@@ -159,7 +159,7 @@
     </div>
 
     <!--x-if-->
-       <div
+    <div
       x-data="{
         open: false,
         toggle(){
@@ -174,7 +174,21 @@
       <template x-if="open">
         <p>Content with transition</p>
       </template>
-      
+    </div>
+
+    <!--x-for-->
+    <div x-data>
+      <template x-for="post in $store.user.posts" :key="post.id">
+        <div>
+          <h2 x-text="post.title"></h2>
+          <p x-text="post.body"></p>
+        </div>
+      </template>
+
+      <template x-for="i in 10">
+        <p x-text="i"></p>
+      </template>
+    </div>
   </body>
   <script src="app.js"></script>
 </html>
