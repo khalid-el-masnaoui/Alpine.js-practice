@@ -245,6 +245,57 @@
         <button x-bind="someButton">Button</button>
       </div>
     </div>
+
+    <!--x-on-->
+    <div x-data="{message:'initial'}">
+      <button @click="console.log('click event')">click</button>
+      <input :type="'text'" @keyup.enter="keyUpEvent" />
+
+      <button
+        :type="'button'"
+        @click="message = 'selected via click'"
+        @click.shift="message = 'added to selection via shift click'"
+        @mousemove.shift="message = 'add to selection via mouse'"
+        @mouseout="message =
+        'select via mouse out'"
+        x-text="message"
+      ></button>
+    </div>
+    <div x-data @foo="console.log('Button Was Clicked via custom event!')">
+      <button
+        @bar.window="console.log('Button Was Clicked via custom event-sibling!')"
+      >
+        need-window-for-propagation
+      </button>
+      <button
+        @click="$event.target.dispatchEvent(new CustomEvent('foo', { bubbles: true}))"
+      >
+        custom-event-1
+      </button>
+
+      <button
+        @click="$event.target.dispatchEvent(new CustomEvent('bar', { bubbles: true}))"
+      >
+        custom-event-2-sibling
+      </button>
+
+      <input :type="'text'" @input.once="console.log('once')" />
+      <input
+        :type="'test'"
+        :placeholder="'debounced'"
+        @input.debounce.750="console.log('debounced')"
+      />
+    </div>
+
+    <div x-data="{modal:false}">
+      <button @click="modal=true">show</button>
+      <button x-show="modal" @click.outside="modal=false">content</button>
+    </div>
   </body>
   <script src="app.js"></script>
+  <script>
+    function keyUpEvent(e) {
+      console.log("keyup-enter-event");
+    }
+  </script>
 </html>
