@@ -329,6 +329,17 @@
         <!-- After the button is pressed, `x-model` will catch the bubbling "input" event, and update title. -->
       </span>
     </div>
+
+    <!--x-model-->
+    <div x-data="{message:'dd'}">
+      <input :type="'text'" x-model.lazy="message" />
+
+      <span
+        x-text="'invalid'"
+        x-show="message.length < 5 ? true : false"
+      ></span>
+      <p x-text="message"></p>
+    </div>
   </body>
   <script src="app.js"></script>
   <script>
