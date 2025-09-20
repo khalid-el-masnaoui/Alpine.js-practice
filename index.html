@@ -219,6 +219,27 @@
         }
       </style>
     </div>
+
+    <!--x-bind alpine.js directives-->
+    <div x-data="alpine_directive_binding">
+      <button x-bind:class="clicked ? 'green' : ''" x-bind="trigger"></button>
+
+      <p
+        :style="{
+        color: clicked && 'red',
+        'font-weight' : 'bold'
+      }"
+        :class="{green: !clicked}"
+      >
+        opposite color
+      </p>
+
+      <style>
+        .green {
+          background-color: forestgreen;
+        }
+      </style>
+    </div>
   </body>
   <script src="app.js"></script>
 </html>

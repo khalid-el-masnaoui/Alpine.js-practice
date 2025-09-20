@@ -20,4 +20,20 @@ document.addEventListener("alpine:init", () => {
             }
         ]
     })
+
+    Alpine.data("alpine_directive_binding", () => ({
+        clicked: false,
+        toggle(){
+            this.clicked = !this.clicked
+        },
+        trigger: {
+            // ['x-text']: "'Click Me From The Bind'",
+            ['x-text']() {
+                return 'Click Me From The Bind-2'
+            },
+            ['@click']() {
+                this.toggle()
+            },
+        },
+    }))
 })
