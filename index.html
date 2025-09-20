@@ -291,6 +291,39 @@
       <button @click="modal=true">show</button>
       <button x-show="modal" @click.outside="modal=false">content</button>
     </div>
+
+    <!--$dispatch-->
+
+    <div
+      x-data
+      @foo2="console.log('Button Was Clicked via custom event!', $event.detail.foo)"
+    >
+      <button
+        @bar2.window="console.log('Button Was Clicked via custom event-sibling!', $event.detail.bar)"
+      >
+        need-window-for-propagation
+      </button>
+      <button @click="$dispatch('foo2', { foo: 'bar' })">custom-event-2</button>
+      <button @click="$dispatch('bar2', { bar: 'foo' })">
+        custom-event-2-sibling
+      </button>
+    </div>
+
+    <div x-data="{ title: 'Hello' }" @set-title.window="title = $event.detail">
+      <h1 x-text="title"></h1>
+    </div>
+
+    <div x-data>
+      <button @click="$dispatch('set-title', 'Hello World!')">Click me</button>
+    </div>
+
+    <div x-data="{ title: 'Hello' }">
+      <span x-model="title">
+        <button @click="$dispatch('input', 'Hello World!')">Click me</button>
+        <p x-text="title"></p>
+        <!-- After the button is pressed, `x-model` will catch the bubbling "input" event, and update title. -->
+      </span>
+    </div>
   </body>
   <script src="app.js"></script>
   <script>
