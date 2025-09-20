@@ -58,6 +58,20 @@
       ></button>
       <div x-show="open">Content2...</div>
     </div>
+
+    <!--data coming from sore-->
+    <div x-data>
+      <p x-text="$store.user.username"></p>
+      <div>
+        <p x-text="$store.user.posts[0].title"></p>
+        <p x-text="$store.user.posts[0].body"></p>
+      </div>
+
+      <div>
+        <p x-text="$store.user.posts[1].title"></p>
+        <p x-text="$store.user.posts[1].body"></p>
+      </div>
+    </div>
   </body>
   <script src="app.js"></script>
 </html>
