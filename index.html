@@ -285,6 +285,11 @@
         :placeholder="'debounced'"
         @input.debounce.750="console.log('debounced')"
       />
+      <input
+        :type="'test'"
+        :placeholder="'throttle'"
+        @input.throttle.750="console.log('throttled')"
+      />
     </div>
 
     <div x-data="{modal:false}">
