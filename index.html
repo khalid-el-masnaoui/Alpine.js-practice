@@ -133,6 +133,30 @@
       ></button>
       <p x-show="open">Content</p>
     </div>
+
+    <!--x-show & x-transition-->
+    <div
+      x-data="{
+        open: false,
+        toggle(){
+            this.open = !this.open
+        }
+    }"
+    >
+      <button
+        x-text="open == false ? 'Open' : 'Close'"
+        @click="toggle"
+      ></button>
+      <p
+        x-show="open"
+        x-transition:enter.duration.500ms
+        x-transition:leave.duration.1000ms
+        x-transition.opacity
+        x-transition.scale.80
+      >
+        Content with transition
+      </p>
+    </div>
   </body>
   <script src="app.js"></script>
 </html>
