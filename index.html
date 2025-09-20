@@ -239,6 +239,11 @@
           background-color: forestgreen;
         }
       </style>
+
+      <!--alpine.bind()-->
+      <div x-data="{shouldDisable: false}">
+        <button x-bind="someButton">Button</button>
+      </div>
     </div>
   </body>
   <script src="app.js"></script>

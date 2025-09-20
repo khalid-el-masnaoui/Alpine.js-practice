@@ -36,4 +36,16 @@ document.addEventListener("alpine:init", () => {
             },
         },
     }))
+
+    Alpine.bind('someButton', () => ({
+        type: 'button',
+
+        '@click'() {
+            console.log("clicked")
+        },
+
+        ':disabled'() {
+            return this.shouldDisable
+        },
+    }))
 })
