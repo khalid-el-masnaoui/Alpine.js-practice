@@ -335,6 +335,7 @@
       <input :type="'text'" x-model.lazy="message" />
 
       <span
+        :style="{color:'red'}"
         x-text="'invalid'"
         x-show="message.length < 5 ? true : false"
       ></span>
