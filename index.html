@@ -71,22 +71,44 @@
         <p x-text="$store.user.posts[1].title"></p>
         <p x-text="$store.user.posts[1].body"></p>
       </div>
+    </div>
 
-      <!--x-init-->
-      <div x-init="console.log('init')"></div>
-      <div
-        x-data="{
+    <!--x-init-->
+    <div x-init="console.log('init')"></div>
+    <div
+      x-data="{
         init(){
             console.log('init-2')
         }
       }"
-      ></div>
+    ></div>
 
+    <div
+      x-data="{todo:{}}"
+      x-init="todo = await(await fetch('https://jsonplaceholder.typicode.com/todos/1')).json()"
+    >
+      <p x-text="todo.title??'--'"></p>
+    </div>
+
+    <!--scoping-->
+    <div
+      x-data="{
+        name: 'malidkha',
+        age: 'old-soul',
+        gender: 'male'
+    }"
+    >
       <div
-        x-data="{todo:{}}"
-        x-init="todo = await(await fetch('https://jsonplaceholder.typicode.com/todos/1')).json()"
+        x-data="{
+        name: 'malidkha-2',
+        age: 'not-so-old-soul'
+    }"
       >
-        <p x-text="todo.title??'--'"></p>
+        <div x-data="{name:'malidkha-3'}">
+          <p x-text="name"></p>
+          <p x-text="age"></p>
+          <p x-text="gender"></p>
+        </div>
       </div>
     </div>
   </body>
