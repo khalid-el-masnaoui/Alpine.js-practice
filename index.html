@@ -189,6 +189,36 @@
         <p x-text="i"></p>
       </template>
     </div>
+
+    <!--x-bind-->
+    <div
+      x-data="{
+        clicked: false,
+        toggle(){
+            this.clicked = !this.clicked
+        }
+    }"
+    >
+      <button x-bind:class="clicked ? 'green' : ''" @click="toggle">
+        Click Me
+      </button>
+
+      <p
+        :style="{
+        color: clicked && 'red',
+        'font-weight' : 'bold'
+      }"
+        :class="{green: !clicked}"
+      >
+        opposite color
+      </p>
+
+      <style>
+        .green {
+          background-color: forestgreen;
+        }
+      </style>
+    </div>
   </body>
   <script src="app.js"></script>
 </html>
