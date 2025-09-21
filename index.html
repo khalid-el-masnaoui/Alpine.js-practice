@@ -341,6 +341,12 @@
       ></span>
       <p x-text="message"></p>
     </div>
+
+    <!--x-effect-->
+    <div x-data="{name:'malidkha'}" x-effect="console.log(name)">
+      <p x-text="name"></p>
+      <input :type="'text'" x-model="name" />
+    </div>
   </body>
   <script src="app.js"></script>
   <script>
