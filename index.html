@@ -354,6 +354,17 @@
         <span x-text="label">hey</span>
       </div>
     </div>
+
+    <!--x-ref & $ref-->
+    <div x-data>
+      <button @click="$refs.title.remove()">remove hey!</button>
+      <span x-ref="title"> hey </span>
+
+      <input :type="'text'" x-ref="title2" />
+      <button @click="$refs.title2.style.backgroundColor='gray'">
+        change background-color to gray
+      </button>
+    </div>
   </body>
   <script src="app.js"></script>
   <script>
