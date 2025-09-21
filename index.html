@@ -417,6 +417,29 @@
     >
       <button @click="foo.bar = 'bob'">change value to bob</button>
     </div>
+
+    <!--$nextTick-->
+    <div x-data="{name:'malidkha'}">
+      <button
+        @click="
+        name='khalid';
+        $nextTick(() => { console.log($event.target.innerText) });
+        "
+        x-text="name"
+      ></button>
+    </div>
+
+    <div x-data="{name:'malidkha-2'}">
+      <button
+        @click="
+        name='khalid-2';
+        await $nextTick();
+        console.log($event.target.innerText)
+        console.log($el.innerText)
+        "
+        x-text="name"
+      ></button>
+    </div>
   </body>
   <script src="app.js"></script>
   <script>
