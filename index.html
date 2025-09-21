@@ -385,6 +385,23 @@
       </template>
       <span>content-2</span>
     </div>
+
+    <!--$el-->
+    <div x-data>
+      <button @click="$el.innerHTML = 'Hello World!'">
+        Replace me with "Hello World!"
+      </button>
+    </div>
+
+    <div x-data="{ username: 'malidkha' }">
+      <div x-ref="div" x-model="username"></div>
+
+      <button @click="$refs.div._x_model.set('khalid')">
+        Change username to: 'khalid'
+      </button>
+
+      <span x-text="$refs.div._x_model.get()"></span>
+    </div>
   </body>
   <script src="app.js"></script>
   <script>
