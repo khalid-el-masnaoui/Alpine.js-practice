@@ -440,6 +440,11 @@
         x-text="name"
       ></button>
     </div>
+
+    <!--$root-->
+    <div x-data data-message="Hello World!">
+      <button @click="alert($root.dataset.message)">Say Hi</button>
+    </div>
   </body>
   <script src="app.js"></script>
   <script>
