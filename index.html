@@ -458,6 +458,50 @@
         alert(greeting + " " + name + "!");
       }
     </script>
+
+    <!--$id-->
+    <div x-data>
+      <input type="text" :id="$id('text-input')" />  <!-- "text-input-1" -->
+      <input type="text" :id="$id('text-input')" />  <!-- "text-input-2" -->
+    </div>
+
+
+    <div x-data>
+        <div x-id="['text-input']">
+            <label :for="$id('text-input')">  <!-- "text-input-3" -->
+            <input type="text" :id="$id('text-input')"> <!-- "text-input-3" -->
+        </div>
+ 
+        <div x-id="['text-input']">
+            <label :for="$id('text-input')"> <!-- "text-input-4" -->
+            <input type="text" :id="$id('text-input')"> <!-- "text-input-4" -->
+        </div>
+    </div>
+
+
+    <div x-data>
+        <div x-id="['text-input']">
+            <label :for="$id('text-input')"> <!-- "text-input-5" -->
+            <input type="text" :id="$id('text-input')"> <!-- "text-input-5" -->
+        
+            <div x-id="['text-input']">
+                <label :for="$id('text-input')"> <!-- "text-input-6" -->
+                <input type="text" :id="$id('text-input')"> <!-- "text-input-6" -->
+            </div>
+        </div>
+    </div>
+
+
+    <div x-data="{activeItem : {id:1}}">
+        <ul
+            x-id="['list-item']"
+            :aria-activedescendant="$id('list-item', activeItem.id)"
+        >
+            <template x-for="post in $store.user.posts" :key="post.id">
+                <li :id="$id('list-item', post.id)" x-text="post.title"></li>
+            </template>
+        </ul>
+    </div>
   </body>
   <script src="app.js"></script>
   <script>
