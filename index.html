@@ -347,6 +347,13 @@
       <p x-text="name"></p>
       <input :type="'text'" x-model="name" />
     </div>
+
+    <!--x-ignore--->
+    <div x-data="{ label: 'From Alpine' }">
+      <div x-ignore>
+        <span x-text="label">hey</span>
+      </div>
+    </div>
   </body>
   <script src="app.js"></script>
   <script>
