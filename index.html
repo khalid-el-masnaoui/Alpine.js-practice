@@ -365,6 +365,26 @@
         change background-color to gray
       </button>
     </div>
+
+    <!--x-cloak-->
+    <div x-data>
+      <span x-cloak x-show="false">wont blip</span>
+    </div>
+    <style>
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
+
+    <!--x-teleport-->
+    <div x-data="{open:false}">
+      <button @click="open=true">show modal</button>
+      <span>content-1</span>
+      <template x-teleport="body">
+        <span x-show="open"> modal-content</span>
+      </template>
+      <span>content-2</span>
+    </div>
   </body>
   <script src="app.js"></script>
   <script>
