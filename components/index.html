@@ -128,9 +128,35 @@
         Toggle Modal
       </button>
       <!--backdrop-->
-      <div x-show="open">
+      <div
+        x-show="open"
+        x-cloak
+        class="bg-black/50 fixed justify-center items-center left-0 right-0 top-0 bottom-0 z-10"
+      >
         <!--dialog-->
-        <div></div>
+        <div
+          @click.outside="open = false"
+          class="w-1/2 bg-white px-10 py-5 absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]"
+        >
+          <!--title-->
+          <div>Modal Title</div>
+          <!--body-->
+          <div>Modal Content</div>
+          <!--footer-->
+          <div class="flex justify-end items-center gap-1">
+            <button
+              class="inline-flex items-center p-1 bg-blue-500 hover:bg-opacity-95 text-white rounded-md shadow text-[0.5rem]"
+            >
+              Submit
+            </button>
+            <button
+              @click="open = false"
+              class="inline-flex items-center p-1 bg-gray-500 hover:bg-opacity-95 text-white rounded-md shadow text-[0.5rem]"
+            >
+              Close
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
