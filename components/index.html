@@ -120,7 +120,16 @@
     </div>
 
     <!--modal-->
-    <div x-data="{open: false}" class="py-20">
+    <div
+      x-data="{
+        open: false, 
+        submit(){
+            this.open = false
+            console.log('submitted')
+    }
+    }"
+      class="py-20"
+    >
       <button
         @click="open = true"
         class="inline-flex items-center py-2 px-4 bg-red-400 hover:bg-opacity-95 text-white rounded-md shadow"
@@ -131,27 +140,49 @@
       <div
         x-show="open"
         x-cloak
-        class="bg-black/50 fixed justify-center items-center left-0 right-0 top-0 bottom-0 z-10"
+        class="bg-black/50 fixed flex justify-center items-center left-0 right-0 top-0 bottom-0 z-10"
       >
         <!--dialog-->
         <div
           @click.outside="open = false"
-          class="w-1/2 bg-white px-10 py-5 absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]"
+          class="w-[80%] md:w-1/2 bg-white rounded-lg"
         >
           <!--title-->
-          <div>Modal Title</div>
+          <div
+            class="py-2 pl-4 pr-0 text-lg flex justify-between items-center font-semibold bg-gray-100 rounded-t-lg"
+          >
+            <h2>Modal Title</h2>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-3 cursor-pointer mb-3 mr-2 text-gray-500"
+              @click="open = false"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </div>
           <!--body-->
-          <div>Modal Content</div>
+          <div class="p-4">Modal Content</div>
           <!--footer-->
-          <div class="flex justify-end items-center gap-1">
+          <div
+            class="flex justify-end items-center gap-1 py-2 px-4 font-semibold bg-gray-100 rounded-b-lg"
+          >
             <button
-              class="inline-flex items-center p-1 bg-blue-500 hover:bg-opacity-95 text-white rounded-md shadow text-[0.5rem]"
+              @click="submit"
+              class="inline-flex items-center py-1 px-3 bg-blue-500 hover:bg-opacity-95 text-white rounded-md shadow text-[0.5rem]"
             >
               Submit
             </button>
             <button
               @click="open = false"
-              class="inline-flex items-center p-1 bg-gray-500 hover:bg-opacity-95 text-white rounded-md shadow text-[0.5rem]"
+              class="inline-flex items-center py-1 px-3 bg-gray-400 hover:bg-opacity-95 text-white rounded-md shadow text-[0.5rem]"
             >
               Close
             </button>
