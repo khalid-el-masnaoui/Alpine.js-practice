@@ -195,38 +195,39 @@
       </template>
     </div>
     <!--tabs-->
-    <div
-      x-data="{
-        tabs : ['Home', 'Users', 'Settings'],
-        activeTab : 'Home'
-
-    }"
-    >
+    <div x-data="tabsComponent">
       <div class="flex">
-        <template x-for="tab in tabs">
+        <template x-for="tab in Object.keys(tabs)" :key="tab">
           <a
             @click="activeTab = tab"
             x-text="tab"
-            class="py-1 px-3 cursor-pointer"
+            class="py-1 px-3 cursor-pointer text-xs"
             :class="{'bg-white' : activeTab == tab, 'text-blue-500' : activeTab == tab, 'rounded-t-md' : activeTab == tab, 'border-x-[1px]' : activeTab == tab,  'border-t-[1px]' : activeTab == tab,'border-gray-300' : activeTab == tab }"
           ></a>
         </template>
       </div>
       <!--content-->
-      <!--home-->
       <div
-        class="rounded-b-md rounded-tr-md bg-white border-[1px] border-gray-300 pl-6 py-4 mt-[-1px]"
+        class="rounded-b-md rounded-tr-md bg-white border-[1px] border-gray-300 pl-6 py-4 pr-10 mt-[-1px]"
       >
-        <div x-show="activeTab == 'Home'? true : false" x-cloak>Home</div>
-        <!--users-->
-        <div x-show="activeTab == 'Users'? true : false" x-cloak>Users</div>
-        <!--settings-->
-        <div x-show="activeTab == 'Settings'? true : false" x-cloak>
-          Settings
-        </div>
+        <template x-for="[tab,body] in Object.entries(tabs)">
+          <div>
+            <div
+              x-show="activeTab == tab ? true : false"
+              x-cloak
+              x-text="tab"
+            ></div>
+            <p
+              x-show="activeTab == tab ? true : false"
+              x-cloak
+              x-text="body"
+              class="text-gray-500 text-[0.7rem]"
+            ></p>
+          </div>
+        </template>
       </div>
     </div>
 
-    <script src="app.js"></script>
+    <script src="./app.js"></script>
   </body>
 </html>
