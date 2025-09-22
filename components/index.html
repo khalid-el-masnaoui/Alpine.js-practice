@@ -9,6 +9,11 @@
       defer
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.0/dist/cdn.min.js"
     ></script>
+    <style>
+      [x-cloak] {
+        display: none;
+      }
+    </style>
   </head>
   <body class="bg-gray-100 p-8">
     <!--dropdown-->
@@ -37,6 +42,7 @@
 
       <ul
         x-show="open"
+        x-cloak
         @click.outside="open = false"
         x-transition.duration.300
         class="bg-white w-[160px] shadow-md py-1"
@@ -111,6 +117,21 @@
           >
         </li>
       </ul>
+    </div>
+
+    <!--modal-->
+    <div x-data="{open: false}" class="py-20">
+      <button
+        @click="open = true"
+        class="inline-flex items-center py-2 px-4 bg-red-400 hover:bg-opacity-95 text-white rounded-md shadow"
+      >
+        Toggle Modal
+      </button>
+      <!--backdrop-->
+      <div x-show="open">
+        <!--dialog-->
+        <div></div>
+      </div>
     </div>
 
     <script src="app.js"></script>
