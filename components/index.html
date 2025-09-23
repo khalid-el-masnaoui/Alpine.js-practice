@@ -581,6 +581,37 @@
       </div>
     </div>
 
+    <!--Toggle-->
+    <div
+      x-data="{isActive: false}"
+      class="py-20 flex justify-center items-center"
+    >
+      <div class="flex items-center gap-1">
+        <label
+          for="tracking"
+          class="text-[0.6rem] text-gray-500"
+          @click="isActive = !isActive"
+          >Enable tracking</label
+        >
+        <input
+          type="checkbox"
+          id="tracking"
+          class="cursor-pointer hidden"
+          x-bind:checked="isActive"
+        />
+        <span
+          class="w-5 h-3 bg-gray-400 rounded-md cursor-pointer relative"
+          :class="{'bg-gray-800' : isActive}"
+          @click="isActive = !isActive"
+        >
+          <span
+            class="w-[0.55rem] h-[0.55rem] top-[0.09rem] left-[0.05rem] rounded-full bg-white absolute transition-all"
+            :class="{'translate-x-[0.55rem]' : isActive}"
+          ></span>
+        </span>
+      </div>
+    </div>
+
     <script src="./app.js"></script>
   </body>
 </html>
