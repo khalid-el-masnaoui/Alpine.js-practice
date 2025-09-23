@@ -393,7 +393,7 @@
               x-transition:enter="transition transform duration-200 ease-in"
               x-transition:enter-start="translate-y-half opacity-0"
               x-transition:enter-end="translate-y-0 opacity-100"
-              x-transition:leave="transition transform duration-0 ease-out"
+              x-transition:leave="transition transform duration-100 ease-out"
               x-transition:leave-start="translate-y-0 opacity-100"
               x-transition:leave-end="translate-y-half opacity-0"
               class="text-[0.6rem] text-gray-400 pt-2 pr-5"
@@ -528,6 +528,57 @@
           </div>
         </div>
       </template>
+    </div>
+
+    <!--radio groups-->
+    <div
+      x-data="{
+        radios : [
+            {
+                name : 'PHP',
+                description : 'Assumenda suscipit et.'
+            },
+            {
+                name : 'Golang',
+                description : 'Omnis dignissimos iusto ut.'
+            },
+             {
+                name : 'NodeJs',
+                description : 'Consequatur placeat tenetur.'
+            }
+        ],
+        activeRadio : null
+    }"
+    >
+      <div class="flex gap-1 justify-center items-center w-[80%] m-auto">
+        <template x-for="radio in radios" :key="radio.name">
+          <div
+            class="bg-white hover:bg-gray-100 border-[1px] border-gray-300 p-2 rounded-md cursor-pointer"
+            @click="activeRadio = radio.name"
+            :class="{'border-gray-500' : activeRadio == radio.name}"
+          >
+            <div class="text-xs flex justify-between items-center">
+              <label
+                :for="radio.name"
+                x-text="radio.name"
+                class="font-semibold cursor-pointer"
+              ></label>
+              <input
+                type="radio"
+                id="radio.name"
+                name="programming-language"
+                value="radio.name"
+                :class="{'accent-gray-600' : true}"
+                x-bind:checked="activeRadio == radio.name ? true : false"
+              />
+            </div>
+            <span
+              class="text-[0.6rem] text-gray-400"
+              x-text="radio.description"
+            ></span>
+          </div>
+        </template>
+      </div>
     </div>
 
     <script src="./app.js"></script>
