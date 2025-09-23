@@ -404,6 +404,80 @@
       </div>
     </div>
 
+    <!--notification-->
+    <div
+      x-data="{
+        types : ['Success', 'Info', 'Warning', 'Error'],
+        openTypeDropdown : false,
+        selectedType : 'Success'
+
+    }"
+      class="py-20"
+    >
+      <div class="w-[60%] m-auto bg-gray-50 rounded-md p-5">
+        <!--message-->
+        <div class="p-3 text-[0.6rem]">
+          <p class="text-xs pb-2">Message</p>
+          <input
+            class="rounded-md font-light px-2 py-1 border-[1px] border-gray-200 w-[80%] focus:outline outline-blue-600"
+            type="text"
+          />
+        </div>
+
+        <!--type-->
+        <div class="p-3">
+          <p class="text-xs pb-2">Type</p>
+          <div @click.outside="openTypeDropdown = false" class="text-[0.6rem]">
+            <button
+              @click="openTypeDropdown = !openTypeDropdown"
+              class="py-1 px-2 bg-white border-[1px] border-gray-200 w-[80%] rounded-md flex justify-between items-center relative"
+            >
+              <span x-text="selectedType"> </span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-2 ml-2 transition-all"
+                :class="{'rotate-90': openTypeDropdown}"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </button>
+
+            <ul
+              x-show="openTypeDropdown"
+              x-cloak
+              x-transition.duration.300ms
+              class="bg-white w-[35%] shadow-md py-1 absolute rounded-sm mt-1"
+            >
+              <template x-for="type in types">
+                <li
+                  class="py-1 px-2 hover:bg-gray-200 cursor-pointer w-full"
+                  :class="{'bg-gray-200': selectedType == type}"
+                  x-text="type"
+                  @click="selectedType = type; openTypeDropdown = false"
+                ></li>
+              </template>
+            </ul>
+          </div>
+        </div>
+        <!--dispatch-->
+        <div class="p-3">
+          <button
+            class="px-3 py-1 text-[0.6rem] border-[1px] border-gray-200 rounded-md bg-white text-gray-600"
+          >
+            Dispatch Notification
+          </button>
+        </div>
+      </div>
+    </div>
+
     <script src="./app.js"></script>
   </body>
 </html>
