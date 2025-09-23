@@ -492,10 +492,27 @@
           style="pointer-events: all"
         >
           <div
-            class="relative flex items-center justify-center mt-4 mr-6 w-60 h-auto text-white shadow font-bold cursor-pointer"
+            class="relative flex items-center justify-start mt-4 mr-6 w-60 h-auto text-white shadow font-bold cursor-pointer"
             :class="getBgColor(notification.type, 500)"
           >
-            <p class="p-2 px-2 text-xs" x-text="notification.message.title"></p>
+            <!--message-->
+            <div>
+              <!--title-->
+              <div
+                class="p-1 px-2 text-[0.8rem] w-full flex items-center gap-1"
+              >
+                <span
+                  x-html="getNotificationTypeIcon(notification.type)"
+                ></span>
+                <span x-text="notification.message.title"></span>
+              </div>
+
+              <!--body-->
+              <div
+                class="pb-2 px-2 text-[0.6rem]"
+                x-text="notification.message.body"
+              ></div>
+            </div>
             <div
               x-cloak
               :class="getBgColor(notification.type, 300)"
