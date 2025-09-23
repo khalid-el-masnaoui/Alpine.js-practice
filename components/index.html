@@ -414,6 +414,7 @@
             class="rounded-md font-normal px-2 py-[2px] border-[1px] border-gray-200 w-[80%] focus:outline outline-blue-600"
             type="text"
             x-model="message"
+            @keyup.enter="$dispatch('notify', {type: selectedType, message: {title : selectedType, body : message}, duration: 2000})"
           />
         </div>
 
