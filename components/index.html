@@ -463,7 +463,7 @@
         <!--dispatch-->
         <div class="p-3">
           <button
-            @click="$dispatch('notify', {type: selectedType, message: message})"
+            @click="$dispatch('notify', {type: selectedType, message: {title : selectedType, body : message}, duration: 2000})"
             class="px-3 py-1 text-[0.6rem] border-[1px] border-gray-200 rounded-md bg-white text-gray-600"
           >
             Dispatch Notification
@@ -479,11 +479,7 @@
       @notify.window="add($event.detail)"
       style="pointer-events: none"
     >
-      <template
-        x-for="notification of notifications"
-        :key="notification.id"
-        x-teleport="body"
-      >
+      <template x-for="notification of notifications" :key="notification.id">
         <div
           x-show="visible.includes(notification)"
           x-transition:enter="transition ease-in duration-300"
@@ -499,7 +495,7 @@
             class="relative flex items-center justify-center mt-4 mr-6 w-60 h-auto text-white shadow font-bold cursor-pointer"
             :class="getBgColor(notification.type, 500)"
           >
-            <p class="pb-2 px-2 text-xs" x-text="notification.message"></p>
+            <p class="p-2 px-2 text-xs" x-text="notification.message.title"></p>
             <div
               x-cloak
               :class="getBgColor(notification.type, 300)"
@@ -508,7 +504,7 @@
               <div
                 class="h-1 w-0 progress"
                 :class="getBgColor(notification.type, 400)"
-                :style="`animation-duration:${notification.animationTime}ms`"
+                :style="`animation-duration:${notification.duration}ms`"
               ></div>
             </div>
           </div>

@@ -23,7 +23,7 @@ document.addEventListener("alpine:init", () => {
         types : ['Success', 'Info', 'Warning', 'Error'],
         openTypeDropdown : false,
         selectedType : 'Success',
-        message: null
+        message: "hello there!"
     }))
 
 
@@ -31,13 +31,12 @@ document.addEventListener("alpine:init", () => {
         notifications: [],
         visible: [],
         add(notification) {
-            if (notification.message == null || notification.message == "") {
+            if (notification.message.body == null || notification.message.body == "") {
                 return;
             }
             notification.id = Date.now();
-            notification.animationTime = this.getAnimationTime()
+            notification.duration = notification.duration ?? 1000;
             this.notifications.push(notification);
-            console.log(this.notifications)
             this.fire(notification);
         },
         //FIFO
@@ -45,7 +44,7 @@ document.addEventListener("alpine:init", () => {
             this.visible.push(notification);
             setTimeout(() => {
                 this.remove(notification.id);
-            }, notification.animationTime);
+            }, notification.duration);
         },
         remove(id) {
             const notification = this.visible.find((notification) => notification.id == id);
@@ -53,11 +52,6 @@ document.addEventListener("alpine:init", () => {
             this.visible.splice(index, 1);
             this.notifications.splice(index, 1);
         },
-        getAnimationTime() {
-			const delta = 1
-			const transitionTime = 800
-			return (7000 * delta) - (transitionTime * delta)
-		},
 		getBgColor(type, shade) {
 			return `bg-${this.getThemeColor(type)}-${shade}`
 		},
