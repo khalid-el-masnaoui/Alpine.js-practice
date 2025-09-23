@@ -612,6 +612,51 @@
       </div>
     </div>
 
+    <!--tooltip-->
+    <div
+      x-data="{
+        hovered : false,
+        clicked : false,
+        hoverPopOver : 'I am a hover-tooltip',
+        clickPopOver : 'I am a click-tooltip'
+    }"
+    >
+      <div class="flex items-center justify-center gap-2">
+        <!--hover-->
+        <div class="relative">
+          <button
+            class="text-[0.7rem] text-gray-600 bg-white rounded-md px-2 py-1 border-[1px] border-gray-300 shadow hover:bg-gray-50"
+            @mouseenter="hovered = true"
+            @mouseleave="hovered = false"
+          >
+            Hover over me
+          </button>
+          <span
+            x-show="hovered"
+            x-cloak
+            class="text-[0.4rem] absolute left-[50%] top-[-90%] -translate-x-[50%] bg-gray-800 font-medium text-white p-1 rounded-md text-center transition-all w-[65px]"
+            x-text="hoverPopOver"
+          ></span>
+        </div>
+        <!--click-->
+        <div class="relative">
+          <button
+            class="text-[0.7rem] text-gray-600 bg-white rounded-md px-2 py-1 border-[1px] border-gray-300 shadow hover:bg-gray-50"
+            @click="clicked = true"
+            @click.outside="clicked = false"
+          >
+            Click me
+          </button>
+          <span
+            x-show="clicked"
+            x-cloak
+            class="text-[0.4rem] absolute left-[50%] top-[-90%] -translate-x-[50%] bg-gray-800 font-medium text-white p-1 rounded-md text-center transition-all w-[65px]"
+            x-text="clickPopOver"
+          ></span>
+        </div>
+      </div>
+    </div>
+
     <script src="./app.js"></script>
   </body>
 </html>
