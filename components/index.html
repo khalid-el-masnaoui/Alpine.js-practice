@@ -260,6 +260,11 @@
             }
             let nextImage = this.activeImage + i
             this.activeImage = nextImage <= 0 ? this.numberOfImages : (nextImage > this.numberOfImages ? 1 : nextImage)
+        },
+        getRandomIntInclusive(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
         }
         
     }"
@@ -271,7 +276,7 @@
           <template x-for="i in numberOfImages">
             <div x-show="activeImage == i" x-cloak="">
               <img
-                :src="imagesBaseLink+'/id/'+i+'/800/400'"
+                :src="imagesBaseLink+'/id/'+getRandomIntInclusive(1,200)+'/800/400'"
                 class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
                 alt="..."
               />
