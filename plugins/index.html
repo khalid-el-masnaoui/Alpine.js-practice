@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alpine.js plugins</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!--mask-->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <!--intersect-->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <!--alpine core-->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.0/dist/cdn.min.js"
+    ></script>
+  </head>
+  <body>
+    <div class="py-20 w-[80%] m-auto">
+      <!--mask-->
+
+      <div x-data>
+        <!--date-->
+        <div>
+          <label for="date"> date</label>
+          <input
+            id="date"
+            x-mask="9999-99-99"
+            placeholder="YYYY-MM-DD"
+            class="text-[0.8rem] text-gray-500 border-[1px] border-gray-300 rounded-md outline-none px-1"
+          />
+        </div>
+
+        <!--dynamic date-->
+        <div class="py-5">
+          <label for="dynamic-date">Dynamic date</label>
+          <input
+            id="dynamic-date"
+            x-mask:dynamic="
+        $input.startsWith('34') || $input.startsWith('37')
+        ? '9999 999999 99999' : '9999 9999 9999 9999'"
+            class="text-[0.8rem] text-gray-500 border-[1px] border-gray-300 rounded-md outline-none px-1"
+          />
+        </div>
+
+        <!--money-->
+        <div>
+          <label for="money">Balance</label>
+          <input
+            id="money"
+            x-mask:dynamic="$money($input)"
+            class="text-[0.8rem] text-gray-500 border-[1px] border-gray-300 rounded-md outline-none px-1"
+          />
+        </div>
+
+        <!--money custom formatting-->
+        <div class="py-5">
+          <label for="custom-money">Balance</label>
+          <input
+            id="custom-money"
+            x-mask:dynamic="$money($input, '.', ',', 4)"
+            class="text-[0.8rem] text-gray-500 border-[1px] border-gray-300 rounded-md outline-none px-1"
+          />
+        </div>
+      </div>
+
+      <!--intersect-->
+      <div
+        x-data="{
+        showAnimatedText : false,
+        lazyLoadImage : false,
+        lazyImageLink : null,
+        lazyLoad(){
+            this.lazyLoadImage = true;
+            this.lazyImageLink = 'https://picsum.photos/500'
+        }
+
+      }"
+        class="py-20"
+      >
+        <button
+          class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-500 font-medium cursor-pointer border-[1px] border-gray-100 rounded-md px-2"
+        >
+          Scroll Down
+        </button>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+        <!--animatedText-->
+        <div
+          x-intersect.half="showAnimatedText = true"
+          x-intersect:leave.margin.-100px="showAnimatedText = false"
+        >
+          <div x-show="showAnimatedText" x-transition.duration.300ms>
+            Animated text when scroll into it
+          </div>
+        </div>
+
+        <!--lazy loading image-->
+        <div
+          x-intersect.margin.10px="lazyLoad"
+          x-intersect:leave.margin.-200px="lazyLoadImage = false"
+        >
+          <img
+            x-show="lazyLoadImage"
+            x-transition.duration.300ms
+            :src="lazyImageLink"
+            alt=""
+          />
+        </div>
+
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      </div>
+    </div>
+  </body>
+</html>

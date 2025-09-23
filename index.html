@@ -8,6 +8,12 @@
       defer
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.0/dist/cdn.min.js"
     ></script>
+
+    <style>
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
   </head>
   <body>
     <!--Alpine.js components with x-data-->
@@ -370,11 +376,7 @@
     <div x-data>
       <span x-cloak x-show="false">wont blip</span>
     </div>
-    <style>
-      [x-cloak] {
-        display: none !important;
-      }
-    </style>
+
 
     <!--x-teleport-->
     <div x-data="{open:false}">
@@ -506,7 +508,7 @@
   <script src="app.js"></script>
   <script>
     function keyUpEvent(e) {
-      console.log("keyup-enter-event");
+      console.log("keyup-enter--event");
     }
   </script>
 </html>
