@@ -13,23 +13,23 @@
       [x-cloak] {
         display: none;
       }
-      .custom-scrollbar::-webkit-scrollbar {
-        width: 0.5rem;
-        height: 0.5rem;
+      .progress {
+        animation: progress;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+        animation-timing-function: linear;
       }
-
-      .custom-scrollbar::-webkit-scrollbar-track {
-        border-radius: 9999px;
-        background-color: #e5e7eb;
-      }
-
-      .custom-scrollbar::-webkit-scrollbar-thumb {
-        border-radius: 9999px;
-        background-color: #6b7280;
-      }
-
-      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background-color: #374151;
+      @keyframes progress {
+        0% {
+          width: 0%;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.5;
+          width: 100%;
+        }
       }
     </style>
   </head>
@@ -405,22 +405,15 @@
     </div>
 
     <!--notification-->
-    <div
-      x-data="{
-        types : ['Success', 'Info', 'Warning', 'Error'],
-        openTypeDropdown : false,
-        selectedType : 'Success'
-
-    }"
-      class="py-20"
-    >
+    <div x-data="notificationComponent" class="py-20">
       <div class="w-[60%] m-auto bg-gray-50 rounded-md p-5">
         <!--message-->
         <div class="p-3 text-[0.6rem]">
           <p class="text-xs pb-2">Message</p>
           <input
-            class="rounded-md font-light px-2 py-1 border-[1px] border-gray-200 w-[80%] focus:outline outline-blue-600"
+            class="rounded-md font-normal px-2 py-[2px] border-[1px] border-gray-200 w-[80%] focus:outline outline-blue-600"
             type="text"
+            x-model="message"
           />
         </div>
 
@@ -470,12 +463,57 @@
         <!--dispatch-->
         <div class="p-3">
           <button
+            @click="$dispatch('notify', {type: selectedType, message: message})"
             class="px-3 py-1 text-[0.6rem] border-[1px] border-gray-200 rounded-md bg-white text-gray-600"
           >
             Dispatch Notification
           </button>
         </div>
       </div>
+    </div>
+
+    <!--notifications handler-->
+    <div
+      x-data="notificationHandler"
+      class="fixed inset-0 flex flex-col-reverse items-end justify-end h-screen w-screen"
+      @notify.window="add($event.detail)"
+      style="pointer-events: none"
+    >
+      <template
+        x-for="notification of notifications"
+        :key="notification.id"
+        x-teleport="body"
+      >
+        <div
+          x-show="visible.includes(notification)"
+          x-transition:enter="transition ease-in duration-300"
+          x-transition:enter-start="transform opacity-0 -translate-y-2"
+          x-transition:enter-end="transform opacity-100"
+          x-transition:leave="transition ease-out duration-500"
+          x-transition:leave-start="transform translate-x-0 opacity-100"
+          x-transition:leave-end="transform translate-x-full opacity-0"
+          @click="remove(notification.id)"
+          style="pointer-events: all"
+        >
+          <div
+            class="relative flex items-center justify-center mt-4 mr-6 w-60 h-auto text-white shadow font-bold cursor-pointer"
+            :class="getBgColor(notification.type, 500)"
+          >
+            <p class="pb-2 px-2 text-xs" x-text="notification.message"></p>
+            <div
+              x-cloak
+              :class="getBgColor(notification.type, 300)"
+              class="absolute bottom-0 left-0 right-0 w-full"
+            >
+              <div
+                class="h-1 w-0 progress"
+                :class="getBgColor(notification.type, 400)"
+                :style="`animation-duration:${notification.animationTime}ms`"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </template>
     </div>
 
     <script src="./app.js"></script>
