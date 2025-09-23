@@ -631,12 +631,18 @@
           >
             Hover over me
           </button>
-          <span
+          <div
             x-show="hovered"
             x-cloak
-            class="text-[0.4rem] absolute left-[50%] top-[-90%] -translate-x-[50%] bg-gray-800 font-medium text-white p-1 rounded-md text-center transition-all w-[65px]"
-            x-text="hoverPopOver"
-          ></span>
+            class="text-[0.4rem] absolute left-[50%] top-[-90%] -translate-x-[50%] bg-gray-800 font-medium text-white p-1 rounded-md text-center transition-all w-[65px] z-20"
+          >
+            <div class="relative">
+              <span x-text="hoverPopOver"></span>
+              <span
+                class="w-1.5 h-1.5 bg-gray-800 absolute -bottom-1.5 left-[50%] -translate-x-[50%] rotate-45 z-10"
+              ></span>
+            </div>
+          </div>
         </div>
         <!--click-->
         <div class="relative">
@@ -651,8 +657,14 @@
             x-show="clicked"
             x-cloak
             class="text-[0.4rem] absolute left-[50%] top-[-90%] -translate-x-[50%] bg-gray-800 font-medium text-white p-1 rounded-md text-center transition-all w-[65px]"
-            x-text="clickPopOver"
-          ></span>
+          >
+            <div class="relative">
+              <span x-text="clickPopOver"></span>
+              <span
+                class="w-1.5 h-1.5 bg-gray-800 absolute -bottom-1.5 left-[50%] -translate-x-[50%] rotate-45 z-10"
+              ></span>
+            </div>
+          </span>
         </div>
       </div>
     </div>
