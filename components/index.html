@@ -359,22 +359,43 @@
     <div x-data="accordionComponent" class="py-20">
       <div class="bg-gray-50 py-5">
         <template x-for="[topic, body] in Object.entries(accordions)">
-          <div
-            class="px-5 pb-2"
-            @click="activeAccordion != topic ? activeAccordion = topic : activeAccordion = null"
-          >
-            <h4 x-text="topic" class="font-semibold text-xs text-gray-800"></h4>
+          <div class="px-5 pb-2">
+            <div
+              class="flex justify-between items-center cursor-pointer"
+              @click="activeAccordion != topic ? activeAccordion = topic : activeAccordion = null"
+            >
+              <h4
+                x-text="topic"
+                class="font-semibold text-xs text-gray-800"
+              ></h4>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-2 ml-2 transition-all text-gray-500"
+                :class="{'rotate-180': activeAccordion == topic}"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                />
+              </svg>
+            </div>
+
             <p
               x-show="topic == activeAccordion"
               x-cloak
               x-text="body"
-              x-transition:enter="transition transform duration-100 ease-in"
+              x-transition:enter="transition transform duration-200 ease-in"
               x-transition:enter-start="translate-y-half opacity-0"
               x-transition:enter-end="translate-y-0 opacity-100"
               x-transition:leave="transition transform duration-0 ease-out"
               x-transition:leave-start="translate-y-0 opacity-100"
               x-transition:leave-end="translate-y-half opacity-0"
-              class="text-[0.6rem] text-gray-400 pt-2"
+              class="text-[0.6rem] text-gray-400 pt-2 pr-5"
             ></p>
             <div class="w-[99%] h-2 border-b-[1px] border-gray-300"></div>
           </div>
