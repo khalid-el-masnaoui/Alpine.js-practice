@@ -20,7 +20,7 @@
     <div x-data="{open: false}">
       <button
         @click="open = !open"
-        class="py-2 px-3 bg-red-400 hover:bg-opacity-95 text-white rounded-md shadow flex justify-items-center items-center"
+        class="py-2 px-3 bg-red-400 hover:bg-opacity-95 text-white rounded-md shadow flex justify-items-center items-center relative"
       >
         Toggle
         <svg
@@ -45,7 +45,7 @@
         x-cloak
         @click.outside="open = false"
         x-transition.duration.300ms
-        class="bg-white w-[160px] shadow-md py-1"
+        class="bg-white w-[160px] shadow-md py-1 absolute rounded-sm mt-1"
       >
         <li>
           <a
@@ -194,6 +194,7 @@
         </div>
       </template>
     </div>
+
     <!--tabs-->
     <div x-data="tabsComponent">
       <div class="flex">
