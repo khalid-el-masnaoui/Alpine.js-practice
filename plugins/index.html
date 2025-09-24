@@ -78,22 +78,31 @@
       </div>
 
       <!--persist-->
-      <div
-        x-data="{
+      <div>
+        <!--persist globally with $store-->
+        <div
+          x-data="{
             updatedName : 'update name and press enter2',
         }"
-        class="py-20"
-      >
-        <div class="flex flex-col items-start justify-center">
-          <input
-            type="text"
-            x-model="updatedName"
-            class="bg-gray-200 text-xs text-gray-600 border-[1px] border-gray-400 rounded-md outline-none px-1 h-5"
-            @keyup.enter="$store.persistentName.name = updatedName"
-          />
-          <div class="text-sm">
-            Name : <span x-text="$store.persistentName.name"></span>
+          class="py-20"
+        >
+          <div class="flex flex-col items-start justify-center">
+            <input
+              type="text"
+              x-model="updatedName"
+              class="bg-gray-200 text-xs text-gray-600 border-[1px] border-gray-400 rounded-md outline-none px-1 h-5"
+              @keyup.enter="$store.persistentName.name = updatedName"
+            />
+            <div class="text-sm">
+              Name : <span x-text="$store.persistentName.name"></span>
+            </div>
           </div>
+        </div>
+        <!--persist within components-->
+        <div x-data="{ count: $persist(0) }">
+          <button x-on:click="count++">Increment</button>
+
+          <span x-text="count"></span>
         </div>
       </div>
 
