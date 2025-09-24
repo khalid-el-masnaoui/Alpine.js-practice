@@ -50,6 +50,14 @@
       .sortable-ghost {
         opacity: 0.5 !important;
       }
+
+      .sortable-chosen {
+        color: red;
+      }
+
+      .sortable-drag {
+        color: green;
+      }
     </style>
   </head>
   <body>
@@ -246,7 +254,7 @@
         </div>
 
         <!--groups-->
-        <div class="pt-5">
+        <div class="py-5">
           <ul x-sort="handle" x-sort:group="todos">
             <li x-sort:item="1">foo</li>
             <li x-sort:item="2">bar</li>
@@ -262,11 +270,28 @@
         </div>
 
         <!--ghost elements-->
-        <div class="pt-5">
+        <div>
           <ul x-sort.ghost="handle">
             <li x-sort:item="1">foo</li>
             <li x-sort:item="2">bar</li>
             <li x-sort:item="3">baz</li>
+          </ul>
+        </div>
+
+        <!--custom configuration-->
+        <div class="pt-5">
+          <ul
+            x-sort
+            x-sort:config="{
+            animation: 0, 
+            ghostClass: 'sortable-ghost',  
+	        chosenClass: 'sortable-chosen',
+	        dragClass: 'sortable-drag' 
+        }"
+          >
+            <li x-sort:item>foo</li>
+            <li x-sort:item>bar</li>
+            <li x-sort:item>baz</li>
           </ul>
         </div>
       </div>
