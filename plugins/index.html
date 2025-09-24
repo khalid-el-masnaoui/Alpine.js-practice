@@ -40,6 +40,12 @@
       src="https://cdn.jsdelivr.net/npm/@alpinejs/sort@3.x.x/dist/cdn.min.js"
     ></script>
 
+    <!--morph-->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/morph@3.x.x/dist/cdn.min.js"
+    ></script>
+
     <!--alpine core-->
     <script
       defer
@@ -246,7 +252,10 @@
         class="py-20"
       >
         <div>
-          <ul x-sort="handle">
+          <ul
+            x-sort="handle"
+            class="bg-gray-200 border-[1px] border-gray-300 p-2 w-fit x-text-sm text-gray-500 has-[.sortable-chosen]:bg-gray-100"
+          >
             <li x-sort:item="1">foo</li>
             <li x-sort:item="2">bar</li>
             <li x-sort:item="3">baz</li>
@@ -254,15 +263,25 @@
         </div>
 
         <!--groups-->
-        <div class="py-5">
-          <ul x-sort="handle" x-sort:group="todos">
+        <div
+          class="bg-gray-400 border-[1px] border-gray-500 p-2 w-fit x-text-sm has-[.sortable-chosen]:bg-gray-100 my-5"
+        >
+          <ul
+            class="bg-gray-200 border-[1px] border-gray-300 p-2 w-fit x-text-sm text-gray-500 has-[.sortable-chosen]:bg-gray-100"
+            x-sort="handle"
+            x-sort:group="todos"
+          >
             <li x-sort:item="1">foo</li>
             <li x-sort:item="2">bar</li>
             <li x-sort:item="3">baz</li>
           </ul>
 
           <div>--------------------------</div>
-          <ol x-sort="handle" x-sort:group="todos">
+          <ol
+            class="bg-gray-200 border-[1px] border-gray-300 p-2 w-fit x-text-sm text-gray-500 has-[.sortable-chosen]:bg-gray-100"
+            x-sort="handle"
+            x-sort:group="todos"
+          >
             <li x-sort:item="4"><span x-sort:handle> ** </span> foo</li>
             <li x-sort:item="5"><span x-sort:handle> ** </span> bar</li>
             <li x-sort:item="6"><span x-sort:handle> ** </span> baz</li>
@@ -271,7 +290,10 @@
 
         <!--ghost elements-->
         <div>
-          <ul x-sort.ghost="handle">
+          <ul
+            x-sort.ghost="handle"
+            class="bg-gray-200 border-[1px] border-gray-300 p-2 w-fit x-text-sm text-gray-500 has-[.sortable-chosen]:bg-gray-100"
+          >
             <li x-sort:item="1">foo</li>
             <li x-sort:item="2">bar</li>
             <li x-sort:item="3">baz</li>
@@ -288,6 +310,7 @@
 	        chosenClass: 'sortable-chosen',
 	        dragClass: 'sortable-drag' 
         }"
+            class="bg-gray-200 border-[1px] border-gray-300 p-2 w-fit x-text-sm text-gray-500 has-[.sortable-chosen]:bg-gray-100"
           >
             <li x-sort:item>foo</li>
             <li x-sort:item>bar</li>
@@ -295,6 +318,9 @@
           </ul>
         </div>
       </div>
+
+      <!--morph-->
+      <div></div>
 
       <!--intersect-->
       <div x-data="intersectComponent" class="py-20">
