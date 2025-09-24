@@ -28,6 +28,12 @@
       src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"
     ></script>
 
+    <!--anchor-->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/anchor@3.x.x/dist/cdn.min.js"
+    ></script>
+
     <!--alpine core-->
     <script
       defer
@@ -106,7 +112,12 @@
         </div>
         <!--persist within components-->
         <div x-data="{ count: $persist(0) }">
-          <button x-on:click="count++">Increment</button>
+          <button
+            x-on:click="count++"
+            class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-500 font-medium cursor-pointer border-[1px] border-gray-100 rounded-md px-2"
+          >
+            Increment
+          </button>
 
           <span x-text="count"></span>
         </div>
@@ -115,7 +126,12 @@
         <div
           x-data="{ count: $persist(0).as('session-storage-count').using(sessionStorage) }"
         >
-          <button x-on:click="count++">Increment</button>
+          <button
+            x-on:click="count++"
+            class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-500 font-medium cursor-pointer border-[1px] border-gray-100 rounded-md px-2"
+          >
+            Increment Into SessionStorage
+          </button>
 
           <span x-text="count"></span>
         </div>
@@ -124,7 +140,12 @@
       <!--collapse-->
       <div class="py-20">
         <div x-data="{ expanded: false }">
-          <button @click="expanded = ! expanded">Toggle Content</button>
+          <button
+            @click="expanded = ! expanded"
+            class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-500 font-medium cursor-pointer border-[1px] border-gray-100 rounded-md px-2"
+          >
+            Toggle Content
+          </button>
 
           <p x-show="expanded" x-collapse class="text-xs text-gray-500">
             Autem nihil magnam sed voluptas velit eum suscipit. Error quasi
@@ -137,7 +158,12 @@
 
         <!--show partial data from the collapsible element-->
         <div x-data="{ expanded: false }" class="pt-5">
-          <button @click="expanded = ! expanded">Toggle Content</button>
+          <button
+            @click="expanded = ! expanded"
+            class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-500 font-medium cursor-pointer border-[1px] border-gray-100 rounded-md px-2"
+          >
+            Toggle Content
+          </button>
 
           <p
             x-show="expanded"
@@ -150,6 +176,27 @@
             quasi ut. Molestiae earum doloribus eos numquam error esse sed ullam
             exercitationem.
           </p>
+        </div>
+      </div>
+
+      <!--anchor-->
+      <div>
+        <div x-data="{ open: false }">
+          <button
+            x-ref="button"
+            @click="open = ! open"
+            class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-500 font-medium cursor-pointer border-[1px] border-gray-100 rounded-md px-2"
+          >
+            Toggle
+          </button>
+
+          <div
+            x-show="open"
+            x-anchor.offset.10.right-start="$refs.button"
+            class="bg-gray-100 text-xs text-gray-500 px-2 py-2 rounded-md"
+          >
+            Dropdown content
+          </div>
         </div>
       </div>
 
