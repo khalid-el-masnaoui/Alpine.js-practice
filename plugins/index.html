@@ -18,6 +18,10 @@
       src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"
     ></script>
 
+    <!--persist-->
+    <!--not deferred => used in app.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+
     <!--alpine core-->
     <script
       defer
@@ -70,6 +74,26 @@
             x-mask:dynamic="$money($input, '.', ',', 4)"
             class="text-[0.8rem] text-gray-500 border-[1px] border-gray-300 rounded-md outline-none px-1"
           />
+        </div>
+      </div>
+
+      <!--persist-->
+      <div
+        x-data="{
+            updatedName : 'update name and press enter2',
+        }"
+        class="py-20"
+      >
+        <div class="flex flex-col items-start justify-center">
+          <input
+            type="text"
+            x-model="updatedName"
+            class="bg-gray-200 text-xs text-gray-600 border-[1px] border-gray-400 rounded-md outline-none px-1 h-5"
+            @keyup.enter="$store.persistentName.name = updatedName"
+          />
+          <div class="text-sm">
+            Name : <span x-text="$store.persistentName.name"></span>
+          </div>
         </div>
       </div>
 

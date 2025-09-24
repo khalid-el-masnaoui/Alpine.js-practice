@@ -6,15 +6,15 @@ document.addEventListener("alpine:init", () => {
         showAnimatedText: false,
         
         //lazy loading
-        lazyLoadImage : false,
-        lazyImageLink : null,
-        lazyLoad(){
+        lazyLoadImage: false,
+        lazyImageLink: null,
+        lazyLoad() {
             this.lazyLoadImage = true;
             this.lazyImageLink = 'https://picsum.photos/500'
         },
 
         //infinite scrolling
-        infiniteScrollingHtmlContent : null,
+        infiniteScrollingHtmlContent: null,
 
         infiniteContent: `  <div>
               <p>hey there!</p>
@@ -61,5 +61,10 @@ document.addEventListener("alpine:init", () => {
             this.infiniteScrollingHtmlContent = this.infiniteContent
         }
         
-      }))
+    }))
+    
+
+    Alpine.store('persistentName', {
+        name : Alpine.$persist('malidkha')
+    })
 })
