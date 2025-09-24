@@ -34,6 +34,12 @@
       src="https://cdn.jsdelivr.net/npm/@alpinejs/anchor@3.x.x/dist/cdn.min.js"
     ></script>
 
+    <!--sort-->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/sort@3.x.x/dist/cdn.min.js"
+    ></script>
+
     <!--alpine core-->
     <script
       defer
@@ -217,6 +223,19 @@
           >
             Dropdown content
           </div>
+        </div>
+      </div>
+
+      <!--sort-->
+      <div class="py-20">
+        <div
+          x-data="{ handle: (item, position) => { console.log(item, position) } }"
+        >
+          <ul x-sort="handle">
+            <li x-sort:item="1">foo</li>
+            <li x-sort:item="2">bar</li>
+            <li x-sort:item="3">baz</li>
+          </ul>
         </div>
       </div>
 
