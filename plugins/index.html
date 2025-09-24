@@ -22,6 +22,12 @@
     <!--not deferred => used in app.js -->
     <script src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
 
+    <!--collapse-->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"
+    ></script>
+
     <!--alpine core-->
     <script
       defer
@@ -112,6 +118,21 @@
           <button x-on:click="count++">Increment</button>
 
           <span x-text="count"></span>
+        </div>
+      </div>
+
+      <!--collapse-->
+      <div class="py-20">
+        <div x-data="{ expanded: false }">
+          <button @click="expanded = ! expanded">Toggle Content</button>
+
+          <p x-show="expanded" x-collapse class="text-xs text-gray-500">
+            Autem nihil magnam sed voluptas velit eum suscipit. Error quasi
+            repudiandae. Reprehenderit explicabo minus voluptate dolorem veniam
+            sit rerum aspernatur. Et debitis occaecati ipsa molestias
+            repellendus id repellat autem. Maiores ut rerum iure inventore
+            dolores ipsum.
+          </p>
         </div>
       </div>
 
