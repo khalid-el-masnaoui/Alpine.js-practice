@@ -8,3 +8,5 @@
  /_/   \_\_| .__/|_|_| |_|\___(_)/ |___/
            |_|                 |__/        
 ```
+
+Practicing Alpine.js basics, re-creating its components and extending its functionality with its plugins. 
