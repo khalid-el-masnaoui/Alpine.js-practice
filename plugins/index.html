@@ -45,6 +45,12 @@
       defer
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.0/dist/cdn.min.js"
     ></script>
+
+    <style>
+      .sortable-ghost {
+        opacity: 0.5 !important;
+      }
+    </style>
   </head>
   <body>
     <div class="py-20 w-[80%] m-auto">
@@ -253,6 +259,15 @@
             <li x-sort:item="5"><span x-sort:handle> ** </span> bar</li>
             <li x-sort:item="6"><span x-sort:handle> ** </span> baz</li>
           </ol>
+        </div>
+
+        <!--ghost elements-->
+        <div class="pt-5">
+          <ul x-sort.ghost="handle">
+            <li x-sort:item="1">foo</li>
+            <li x-sort:item="2">bar</li>
+            <li x-sort:item="3">baz</li>
+          </ul>
         </div>
       </div>
 
