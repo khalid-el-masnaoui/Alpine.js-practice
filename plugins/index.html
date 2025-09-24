@@ -320,7 +320,27 @@
       </div>
 
       <!--morph-->
-      <div></div>
+      <div>
+        <div>
+          <div
+            x-data="{ message: 'Change me, then press the button!' }"
+            id="morphed-element"
+          >
+            <input
+              type="text"
+              x-model="message"
+              class="bg-gray-200 text-xs text-gray-600 border-[1px] border-gray-400 rounded-md outline-none px-1 h-5"
+            />
+            <span x-text="message" class="block text-xs"></span>
+          </div>
+          <button
+            id="run-morph"
+            class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-500 font-medium cursor-pointer border-[1px] border-gray-100 rounded-md px-2"
+          >
+            Run Morph
+          </button>
+        </div>
+      </div>
 
       <!--intersect-->
       <div x-data="intersectComponent" class="py-20">
@@ -362,5 +382,24 @@
     </div>
 
     <script src="./app.js"></script>
+    <script>
+      document.getElementById("run-morph").addEventListener("click", () => {
+        let el = document.getElementById("morphed-element");
+
+        Alpine.morph(
+          el,
+          `
+            <div x-data="{ message: 'Change me, then press the button!' }">
+                <h2>See how new elements have been added</h2>
+ 
+                <input type="text" x-model="message" class="bg-gray-200 text-xs text-gray-600 border-[1px] border-gray-400 rounded-md outline-none px-1 h-5">
+                <span x-text="message" class="block text-xs"></span>
+ 
+                <h2>but the state of this component hasn't changed? Magical.</h2>
+            </div>
+        `
+        );
+      });
+    </script>
   </body>
 </html>
