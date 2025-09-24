@@ -134,6 +134,23 @@
             dolores ipsum.
           </p>
         </div>
+
+        <!--show partial data from the collapsible element-->
+        <div x-data="{ expanded: false }" class="pt-5">
+          <button @click="expanded = ! expanded">Toggle Content</button>
+
+          <p
+            x-show="expanded"
+            x-collapse.min.25px
+            class="text-xs text-gray-500"
+          >
+            Ea sed praesentium consequuntur rerum delectus porro. Laudantium
+            temporibus temporibus voluptatem sed nesciunt. Libero necessitatibus
+            qui sunt harum esse omnis. Sed consequatur illo qui tempora dolorum
+            quasi ut. Molestiae earum doloribus eos numquam error esse sed ullam
+            exercitationem.
+          </p>
+        </div>
       </div>
 
       <!--intersect-->
