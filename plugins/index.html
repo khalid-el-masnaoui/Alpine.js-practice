@@ -227,15 +227,32 @@
       </div>
 
       <!--sort-->
-      <div class="py-20">
-        <div
-          x-data="{ handle: (item, position) => { console.log(item, position) } }"
-        >
+      <div
+        x-data="{ handle: (item, position) => { console.log(item, position) } }"
+        class="py-20"
+      >
+        <div>
           <ul x-sort="handle">
             <li x-sort:item="1">foo</li>
             <li x-sort:item="2">bar</li>
             <li x-sort:item="3">baz</li>
           </ul>
+        </div>
+
+        <!--groups-->
+        <div class="pt-5">
+          <ul x-sort="handle" x-sort:group="todos">
+            <li x-sort:item="1">foo</li>
+            <li x-sort:item="2">bar</li>
+            <li x-sort:item="3">baz</li>
+          </ul>
+
+          <div>--------------------------</div>
+          <ol x-sort="handle" x-sort:group="todos">
+            <li x-sort:item="4"><span x-sort:handle> ** </span> foo</li>
+            <li x-sort:item="5"><span x-sort:handle> ** </span> bar</li>
+            <li x-sort:item="6"><span x-sort:handle> ** </span> baz</li>
+          </ol>
         </div>
       </div>
 
