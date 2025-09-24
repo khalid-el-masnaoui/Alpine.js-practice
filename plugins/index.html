@@ -198,6 +198,26 @@
             Dropdown content
           </div>
         </div>
+
+        <!--manual styling-->
+        <div x-data="{ open: false }">
+          <button
+            x-ref="button"
+            @click="open = ! open"
+            class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-500 font-medium cursor-pointer border-[1px] border-gray-100 rounded-md px-2"
+          >
+            Toggle
+          </button>
+
+          <div
+            x-show="open"
+            class="bg-gray-100 text-xs text-gray-500 px-2 py-2 rounded-md"
+            x-anchor.no-style="$refs.button"
+            x-bind:style="{ position: 'absolute', top: $anchor.y+'px', left: $anchor.x+'px' }"
+          >
+            Dropdown content
+          </div>
+        </div>
       </div>
 
       <!--intersect-->
