@@ -104,6 +104,15 @@
 
           <span x-text="count"></span>
         </div>
+
+        <!--persist with custom key in sessionStorage-->
+        <div
+          x-data="{ count: $persist(0).as('session-storage-count').using(sessionStorage) }"
+        >
+          <button x-on:click="count++">Increment</button>
+
+          <span x-text="count"></span>
+        </div>
       </div>
 
       <!--intersect-->
