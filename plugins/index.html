@@ -74,19 +74,7 @@
       </div>
 
       <!--intersect-->
-      <div
-        x-data="{
-        showAnimatedText : false,
-        lazyLoadImage : false,
-        lazyImageLink : null,
-        lazyLoad(){
-            this.lazyLoadImage = true;
-            this.lazyImageLink = 'https://picsum.photos/500'
-        }
-
-      }"
-        class="py-20"
-      >
+      <div x-data="intersectComponent" class="py-20">
         <button
           class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-500 font-medium cursor-pointer border-[1px] border-gray-100 rounded-md px-2"
         >
@@ -117,11 +105,13 @@
           />
         </div>
 
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br />
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <!--infinite scrolling-->
+        <div x-intersect:leave.margin.-200px="addContent">
+          <div x-html="infiniteScrollingHtmlContent"></div>
+        </div>
       </div>
     </div>
+
+    <script src="./app.js"></script>
   </body>
 </html>
